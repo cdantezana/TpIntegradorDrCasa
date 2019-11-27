@@ -1,6 +1,6 @@
 package programa;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Medico extends Persona{
 
@@ -16,9 +16,9 @@ public class Medico extends Persona{
 		super.contraer(enfermedad);
 		this.atender(this);
 	}
-	public Medico(int a, int b, ArrayList<Enfermedad> c, int d) {
-		super(a,b,c);
-		dosis=d;
+	public Medico(int _cantCelulas,int _temperatura, List<Enfermedad> _enfermedades, int _dosis) {
+		super(_cantCelulas,_temperatura,_enfermedades);
+		dosis=_dosis;
 		
 	}
 	//getters & setters

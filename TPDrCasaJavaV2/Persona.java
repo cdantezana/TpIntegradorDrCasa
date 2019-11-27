@@ -1,18 +1,20 @@
 package programa;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Comparator;
 public class Persona {
 
-	public Persona( int a,int b,ArrayList<Enfermedad> c) {
-		cantCelulas=a;
-		temperatura=b;
-		enfermedades=c;
+	public Persona( int _cantCelulas,int _temperatura, List<Enfermedad> _enfermedades) {
+		cantCelulas=_cantCelulas;
+		temperatura=_temperatura;
+		enfermedades=_enfermedades;
 		}
 	public boolean estaEnComa() {
 		return ((temperatura == 45) || (cantCelulas < 1000000));
 	}
 	
-	ArrayList<Enfermedad> enfermedades= new ArrayList<Enfermedad>();
+	List<Enfermedad> enfermedades= new ArrayList<>();
 	private int cantCelulas;
 	private float temperatura;
 	
@@ -33,30 +35,23 @@ public class Persona {
 		cantCelulas = Math.max(cantCelulas, 0);
 	}
 	
-	public ArrayList<Enfermedad> enfermedadesAgresivas(){
+	public List<Enfermedad> enfermedadesAgresivas(){
 		enfermedades.removeIf(enfermedad -> enfermedad.esAgresiva(this));
 		return enfermedades;
 	}
 	
 	public int cantCelulasAfectadasPorAgresivas ()
 	{
-		int cant=0;
-		for(Enfermedad enfermedadAgre: enfermedadesAgresivas())
-		{
-			cant+= enfermedadAgre.getCantCelulasAmenazadas();
-		}
-		return cant;
+		
+		int totCelAfect= enfermedadesAgresivas().stream().mapToInt(enfermedad ->enfermedad.getCantCelulasAmenazadas()).sum();
+		return totCelAfect;
 				
 	}
 	
 	public Enfermedad enfermedadQueAmenazaMasCelulas() {
 		
-		Enfermedad max= enfermedades.get(0);
-		for (Enfermedad enfermedad : enfermedades) {
-			if(enfermedad.getCantCelulasAmenazadas()>max.getCantCelulasAmenazadas())
-				max=enfermedad;
-		}
-		return max;
+		Enfermedad amenazativaMaxima=enfermedades.stream().max(Comparator.comparing(Enfermedad::getCantCelulasAmenazadas)).get();
+		return amenazativaMaxima;
 			
 	}
 	public void recibirMedicamento(int dosis) {
@@ -89,7 +84,7 @@ public class Persona {
 	public void setTemperatura(float temperatura) {
 		this.temperatura = temperatura;
 	}
-	public ArrayList<Enfermedad> enfermedades() {
+	public List<Enfermedad> enfermedades() {
 		return enfermedades;
 	}
 	

@@ -1,5 +1,6 @@
 package programa;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,20 +33,20 @@ public class TestsDrCasa {
 	
 	@Before
 	public void fixture() {
-		ArrayList<Enfermedad> listaLogan = new ArrayList<Enfermedad>();
+		List<Enfermedad> listaLogan = new ArrayList<>();
 		listaLogan.add(malaria);
 		listaLogan.add(otitis);
 		listaLogan.add(lupus);
-		logan = new Persona (3000000,36, listaLogan );
+		logan = new Persona (3000000,36, listaLogan);
 				
-		ArrayList<Enfermedad> listaFrank = new ArrayList<Enfermedad>();
+		List<Enfermedad> listaFrank = new ArrayList<Enfermedad>();
 		frank= new Persona (3500000, 36,listaFrank);
 		
-		ArrayList<Enfermedad> listaCameron = new ArrayList<Enfermedad>();
+		List<Enfermedad> listaCameron = new ArrayList<Enfermedad>();
 		cameron= new Medico (9999, 30, listaCameron, 0);
 		
-		ArrayList<Enfermedad> listaHouse = new ArrayList<Enfermedad>();
-		ArrayList<Medico> subordinados= new ArrayList<Medico>();
+		List<Enfermedad> listaHouse = new ArrayList<Enfermedad>();
+		List<Medico> subordinados= new ArrayList<Medico>();
 		subordinados.add(cameron);
 		
 		house= new Jefe (999999999, 60, listaHouse, 0 ,subordinados);

@@ -1,13 +1,14 @@
 package programa;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 public class Jefe extends Medico {
 
-	ArrayList<Medico> subordinados= new ArrayList<Medico>();
-	public Jefe(int a, int b, ArrayList<Enfermedad> c, int d, ArrayList<Medico> e) {
-		super(a,b,c,d);
-		subordinados=e;
+	List<Medico> subordinados= new ArrayList<Medico>();
+	public Jefe(int _cantCelulas,int _temperatura, List<Enfermedad> _enfermedades, int _dosis, List<Medico> _subordinados) {
+		super(_cantCelulas,_temperatura,_enfermedades,_dosis);
+		subordinados=_subordinados;
 		
 	}
 
